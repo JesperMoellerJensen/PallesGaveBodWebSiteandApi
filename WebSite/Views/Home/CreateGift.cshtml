@@ -1,13 +1,19 @@
 ﻿@model Gift
 
+@{
+    ViewData["Title"] = "Create a gift";
+}
+
 <h2>Create a gift</h2>
 
 <form asp-controller="Home" asp-action="CreateGift" method="post">
-    
-    <label>Title</label> <input asp-for="Title"/> <br/>
-    <label>Description</label> <input asp-for="Description"/> <br />
-    <label>Boy Gift</label> <input asp-for="BoyGift" type="checkbox"/> <br />
-    <label>Girl Gift</label> <input asp-for="GirlGift" type="checkbox"/> <br />
+
+    <label>Title</label> <input asp-for="Title" /> <br />
+    <span asp-validation-for="Title"></span><br />
+    <label>Description</label> <input asp-for="Description" /> <br />
+    <span asp-validation-for="Description"></span><br />
+    <label>Boy Gift</label> <input asp-for="BoyGift" type="checkbox" /> <br />
+    <label>Girl Gift</label> <input asp-for="GirlGift" type="checkbox" /> <br />
 
     <button type="submit">Create</button>
 </form>

@@ -55,6 +55,10 @@ namespace WebSite.Controllers
         [HttpPost]
         public IActionResult CreateGift(Gift gift)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             _apiHelper.Post(gift,"api/gifts");
             return Redirect("Index");
         }
