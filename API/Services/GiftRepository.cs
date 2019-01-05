@@ -8,19 +8,36 @@ namespace API.Services
 {
     public class GiftRepository : IGiftRepository
     {
+        private GiftContext _context;
+
+        public GiftRepository(GiftContext context)
+        {
+            _context = context;
+        }
+
         public List<GiftEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Gifts.OrderBy(g => g.Title).ToList();
         }
 
         public GiftEntity GetGift(int giftNumber)
         {
-            throw new NotImplementedException();
+            return _context.Gifts.FirstOrDefault(g => g.GiftNumber == giftNumber);
         }
 
         public List<GiftEntity> GetAllByGender(bool boy, bool girl)
         {
-            throw new NotImplementedException();
+            return _context.Gifts.Where(g => g.BoyGift == boy & g.GirlGift == girl).ToList();
+        }
+
+        public void CreateGift(GiftEntity giftEntity)
+        {
+            _context.Gifts.Add(giftEntity);
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
         }
     }
 }

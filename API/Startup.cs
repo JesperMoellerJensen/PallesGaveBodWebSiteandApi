@@ -30,15 +30,19 @@ namespace API
 
             var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
             services.AddDbContext<GiftContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<IGiftRepository, GiftRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, GiftContext giftContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            giftContext.EnsureSeedDataForContext();
 
             app.UseMvc();
         }

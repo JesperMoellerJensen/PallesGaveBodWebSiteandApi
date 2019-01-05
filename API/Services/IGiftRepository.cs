@@ -11,5 +11,7 @@ namespace API.Services
         List<GiftEntity> GetAll();
         GiftEntity GetGift(int giftNumber);
         List<GiftEntity> GetAllByGender(bool boy, bool girl);
+        void CreateGift(GiftEntity giftEntity);
+        bool Save();
     }
 }
