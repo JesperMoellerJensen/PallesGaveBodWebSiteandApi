@@ -1,0 +1,32 @@
+﻿@model List<Gift>
+
+<h2>Gift List</h2>
+
+@Html.ActionLink("Boy Only", "Index", "Home", new { boy = true }) <span>   |   </span> @Html.ActionLink("Girl Only", "Index", "Home", new { girl = true }) <span>   |   </span> @Html.ActionLink("For Both", "Index", "Home", new { boy = true, girl = true })<span>   |   </span>  @Html.ActionLink("All gifts", "Index", "Home")
+<table style="width:100%">
+    <tr>
+        <th>Gift Number</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Creation Date</th>
+        <th>Boy Gift</th>
+        <th>Girl Gift</th>
+    </tr>
+    @{
+        foreach (Gift gift in Model)
+        {
+            <tr>
+                <td>@gift.GiftNumber</td>
+                <td>@gift.Title</td>
+                <td>@gift.Description</td>
+                <td>@gift.CreationDate</td>
+                <td>@gift.BoyGift</td>
+                <td>@gift.GirlGift</td>
+            </tr>
+        }
+    }
+</table>
+<br />
+<a>
+    @Html.ActionLink("Create", "CreateGift", "Home")
+</a>
